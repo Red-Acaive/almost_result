@@ -8,12 +8,12 @@ app.debug = True
 
 class db_init:
     def __init__(self) -> None:
-        self.username = "dev"
-        self.password = "ohjihoon"
-        self.dbname = "park"
+        self.username = "root"
+        self.password = "develop"
+        self.dbname = "dev"
     
     def create_db(self):
-        app.config['SQLALCHEMY_DATABASE_URI']= f'mysql://{self.username}:{self.password}@localhost:3306/{self.dbname}'
+        app.config['SQLALCHEMY_DATABASE_URI']= f'mysql://{self.username}:{self.password}@mysql:3306/{self.dbname}'
         app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
         db = SQLAlchemy()
 
