@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <title>Template</title>
+        
+    </head>
+    <body>
+        <form action="localhost:5000" id="Pn">
+            <input  id="find" type="input" placeholder="주차장 검색하기"/>
+        </form>
+        <button style=" float: right;" id="To_Log" type="button" onclick="location.href ='log.html'">로그인</button>
+        <div id="shape"></div>
+        <button id="swap_button" type="button"><</button>
+        <button id="swap_button1" class="hidden" type="button">></button>
+        
+        
+
+        <!--지도 그리기-->
+        <div id="map" style= "position: absolute; width: 100vw; height:100vh"></div>
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9a80b1dd2d2092da2c99745493f94901"></script>
+        <script>
+                navigator.geolocation.getCurrentPosition(geoSuccess, getError)
+                function geoSuccess(position) {
+                    var lat = position.coords.latitude;
+                    var lng = position.coords.longitude;
+                    lat_lng(lat, lng);
+                }
+                function getError(error) {
+                    console.log(error);
+                }
+                function lat_lng(lat, lng){
+                    var container = document.getElementById("map");
+                    var options = {
+                        center: new kakao.maps.LatLng(lat, lng),
+                        level: 3
+                    };
+                        
+                    var map = new kakao.maps.Map(container, options);
+                };
+                
+            
+                setInterval(() => navigator.geolocation.getCurrentPosition(geoSuccess, getError), 3000);
+    </script>
+
+    <!--버튼 이밴트 -->
+    <script>
+        var swap = document.getElementById("swap_button");
+        var shape = document.getElementById("shape");
+        var find = document.getElementById("find");
+        var swap2 = document.getElementById("swap_button1");
+        var To_Log = document.getElementById("To_Log");
+        function hide() {
+            swap.classList.add("hidden");
+            shape.classList.add("hidden");
+            find.classList.add("hidden");
+            swap2.classList.remove("hidden");
+        }
+        function show() {
+            swap.classList.remove("hidden");
+            shape.classList.remove("hidden");
+            find.classList.remove("hidden");
+            swap2.classList.add("hidden");
+        }
+        swap.addEventListener("click",hide);
+        swap2.addEventListener("click",show);
+        
+            
+    
+    </script>
+    </body>
+</html>

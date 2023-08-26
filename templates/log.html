@@ -1,0 +1,20 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>sign_in</title>
+        <link rel="stylesheet" href="/static/css/log.css">
+    </head>
+    <body>
+        <h1><strong>Red Archive</strong> </h1>
+        <div class="login-wrapper">
+            <form  method="post" action="localhost:5000" id="login-form">
+                <input type="text" name="userName" placeholder="id" minlength="6" maxlength="12" required><br>
+                <input type="password" name="userPassword" placeholder="Password" minlength="6" maxlength="12" required><br>
+                <input type="submit" value="sign_in">
+                <button name="membership" type="button" onclick="location.href = 'membership.html'">회원가입</button>
+            </form>
+        </div>
+    </body>
+    </html>
