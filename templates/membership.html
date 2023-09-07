@@ -9,12 +9,113 @@
     <body>
         <h1><strong> Welcome To Red Archive</strong> </h1>
         <div class="login-wrapper">
-            <form  method="post" action="localhost:5000" id="login-form">
-                <input type="text" name="userName" placeholder="id" minlength="6" maxlength="12" required><br>
-                <input type="password" name="userPassword" placeholder="Password" minlength="6" maxlength="12" required><br>
-                <input type="submit" value="sign_up">
+            <form class="to_email" method="post" action="localhost:5000" id="login-form">
+                <button type="button" >중복확인하기</button>
+                <input type="text" name="userName" placeholder="id" minlength="1" maxlength="12" required><br>
+                <input id="pass123" type="password" name="userPassword" placeholder="Password" minlength="6" maxlength="12"  required><br>
+                <input id="repeat123" type="password" name="repassword" placeholder="repeat_Password" onkeyup="check()" minlength="6" maxlength="12" required><br>
+                <label class="hidden" id="checkPwd"><div >동일한 암호를 입력하세요.</div></label><br>
+                <input id="email" class="email" type="email " name="email" placeholder="email" required><br>
+                <input id="code" class="code" type="text" name="password" placeholder="code" minlength="5" maxlength="5" onkeyup="check_code()" required>
+                <button class="print_mail" type="button" onclick="console.log(randomNum.authNo(5)), check_code()" >인증번호 발송</button><br><br><br><br>
+                <input id="sign" type="submit" value="sign_up"><br><br><br>
+                <label id="bug" class="hidden">비밀번호가 일치 하지않아 다시 입력해주어야 회원가입이 가능합니다</label>
+                <label id="bug2" class="hidden">인증번호가 일치 하지않아 다시 입력해주어야 회원가입이 가능합니다</label>
+                <label id="bug3" class="hidden">개인정보 또는 서비스 이용약관이 허용되지않아 선택해주어야 회원가입이 가능합니다</label>
             </form>
         </div>
+        <div class="checkbox">
+            <label id="check1" class="info1"><input type="checkbox" name="info" value="개인정보이용 동의">개인정보이용 동의</label><br>
+            <label id="check2" class="info2"><input type="checkbox" name="info2" value="서비스이용약관 동의">서비스이용약관 동의</label>
+        </div>  
+        <script>            
+            function check(){	
+	         var pw1 = document.getElementById("pass123").value;
+	         var pw2 = document.getElementById("repeat123").value;
+             var not = document.getElementById("checkPwd");
+             var sign = document.getElementById("sign");
+             var bug = document.getElementById("bug");
+	         if(pw1!=pw2){
+	        	  not.classList.remove("hidden")
+                  sign.classList.add("hidden")
+                  bug.classList.remove("hidden")
 
+                    
+	        }else{
+                not.classList.add("hidden")
+                sign.classList.remove("hidden")
+                bug.classList.add("hidden")
+            }
+
+            
+        };
+
+
+      
+        </script>
+        <script>
+            var randomNum = {};
+            //0~9까지의 난수
+            randomNum.random = function(n1, n2) {
+                return parseInt(Math.random() * (n2 -n1 +1)) + n1;
+            };
+            var value = 0
+            //인증번호를 뽑을 난수 입력 n 5이면 5자리
+            randomNum.authNo = function(n) {
+                value = "";
+                for(var i=0; i<n; i++){
+                    value += randomNum.random(0,9);
+                }
+                return value;
+            
+        };
+
+        function check_code(){	
+	         var code = value;
+	         var code2 = document.getElementById("code").value;
+             var sign = document.getElementById("sign");
+	         if(code!=code2){
+                  sign.classList.add("hidden")
+                  bug2.classList.remove("hidden")
+
+                    
+	        }else{
+                sign.classList.remove("hidden")
+                bug2.classList.add("hidden")
+            }
+
+            
+        };
+
+             
+
+           
+
+
+        </script>
+        <script>
+            function ischeck(){
+                var check1 = document.getElementById("check1")
+                var check2 = document.getElementById("check2")
+                var sign = document.getElementById("sign");
+                var bug = document.getElementById("bug3");
+                var ischeck1 = check1.checked;
+                var ischeck2 = check2.checked;
+                
+                if (ischeck1 === false || ischeck2 === false){
+                    sign.classList.add("hidden")
+                    bug.classList.remove("hidden")
+                    
+                }else{
+                    sign.classList.remove("hidden")
+                    bug.classList.add("hidden")
+                }
+            };
+            
+            
+
+
+        </script>
+        <script src="route/index.js"></script>
     </body>
 </html>
