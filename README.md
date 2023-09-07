@@ -11,4 +11,4 @@ docker compose up -d --build
 ## Uninstallation
 ```sh
 docker compose down -d --build
-```
+```# almost_result
